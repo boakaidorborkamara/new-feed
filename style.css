@@ -3,6 +3,25 @@
 body{
   font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
-  font-weight: <weight>;
   font-style: normal;
+}
+
+header h1{
+    text-align: center;
+    font-weight: normal;
+}
+
+#news-section h1{
+    text-align: center;
+    background-color: beige;
+    padding: 50px;
+}
+
+#news-section > div{
+    display: flex;
+    gap: 25px
+}
+
+#news-section div .news-card img{
+    width: 100%;
 }
