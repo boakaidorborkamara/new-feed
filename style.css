@@ -12,6 +12,13 @@ button{
     color: white;
 }
 
+.error-text-container{
+    text-align: center;
+    padding: 100px 0px;
+}
+
+
+
 header h1{
     text-align: center;
     font-weight: normal;
