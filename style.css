@@ -34,6 +34,10 @@ header h1{
     padding: 50px;
 }
 
+.news-card{
+    flex-basis: 23%;
+}
+
 #news-section #cards-container{
     display: flex;
     flex-wrap: wrap;

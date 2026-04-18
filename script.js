@@ -65,10 +65,12 @@ function renderUI(state) {
 
     let news_card = `
     <div class="news-card">
-            <img
-              src=${news.image_url}
-              alt="News image"
-            />
+            <div>
+                <img
+                src=${news.image_url}
+                alt="News image"
+                />
+            </div>
             <p>Date</p>
             <h3>Add news title here</h3>
             <a href="">Read More</a>
