@@ -11,9 +11,10 @@ let cta_section = document.getElementById("cta-container");
 
 let state = {
   news: [],
+
   setState(new_state) {
-    this.new = {...new_state};
-    renderUI();
+    this.news = {...new_state};
+    renderUI(this.news);
   },
 };
 
@@ -41,8 +42,10 @@ async function fetchData(url) {
 
 }
 
-function renderUI() {
-  if (state.news.length === 0) {
+function renderUI(state) {
+    console.log("state in render", state);
+
+  if (state.length === 0) {
     let err_html = `
             <div class="error-text-container">
                 <p class="error-text">No news found!</p>
@@ -53,7 +56,28 @@ function renderUI() {
 
     // cta_section.classList.add("display")
     cards_container.innerHTML = "";
+
+    return;
   }
+  
+  state.results.forEach(news => {
+    console.log("news", news)
+
+    let news_card = `
+    <div class="news-card">
+            <img
+              src=${news.image_url}
+              alt="News image"
+            />
+            <p>Date</p>
+            <h3>Add news title here</h3>
+            <a href="">Read More</a>
+          </div>
+    `;
+
+    cards_container.insertAdjacentHTML("beforeend", news_card)
+    
+  });
 }
 
 window.addEventListener("load", async () => {

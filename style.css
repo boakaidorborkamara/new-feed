@@ -24,6 +24,10 @@ header h1{
     font-weight: normal;
 }
 
+
+
+
+
 #news-section h1{
     text-align: center;
     background-color: beige;
@@ -32,7 +36,8 @@ header h1{
 
 #news-section #cards-container{
     display: flex;
-    gap: 25px
+    flex-wrap: wrap;
+    gap: 25px;
 }
 
 .news-card img{
