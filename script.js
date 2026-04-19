@@ -71,8 +71,9 @@ function renderUI(state) {
                 alt="News image"
                 />
             </div>
-            <p>Date</p>
-            <h3>Add news title here</h3>
+            <p>${news.pubDate}</p>
+            <h3>${news.title}</h3>
+            <p>${news.description}</p>
             <a href="">Read More</a>
           </div>
     `;
