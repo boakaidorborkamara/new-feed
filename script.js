@@ -73,7 +73,7 @@ function renderUI(state) {
             </div>
             <p>${new Date(news.pubDate).toDateString()}</p>
             <h3>${news.title}</h3>
-            <p>${news.description}</p>
+            <p class="news-description">${news.description}</p>
             <a href="">Read More</a>
           </div>
     `;

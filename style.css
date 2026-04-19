@@ -34,8 +34,17 @@ header h1{
     padding: 50px;
 }
 
+
 .news-card{
     flex-basis: 23%;
+}
+
+.news-description{
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
 }
 
 #news-section #cards-container{
