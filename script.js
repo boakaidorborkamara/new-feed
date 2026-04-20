@@ -9,17 +9,24 @@ let cards_container = document.getElementById("cards-container");
 let news_section = document.getElementById("news-section");
 let cta_section = document.getElementById("cta-container");
 
+// STATE
 let state = {
-  news: [],
-
-  setState(new_state) {
-    this.news = {...new_state};
-    renderUI(this.news);
-  },
+  news: {},
+  isLoading: false,
+  error: false,
 };
+
+function setState(updates) {
+  state = { ...state, ...updates };
+  renderUI(state);
+}
+
+// API
 
 async function fetchData(url) {
   console.log("url", url);
+
+  // setState({ isLoading: true });
 
   try {
     let response = await fetch(url, {
@@ -27,43 +34,49 @@ async function fetchData(url) {
       headers: { "X-ACCESS-KEY": api_key },
     });
 
-    if(!response.ok){
-        throw new Error()
+    if (!response.ok) {
+      throw new Error();
     }
 
     let data = await response.json();
 
     console.log(data);
 
+  
+
     return data;
   } catch (err) {
     console.log("error", err);
+    setState({ error: true });
   }
-
 }
 
+// UI
 function renderUI(state) {
-    console.log("state in render", state);
+  console.log("state in render", state);
 
-  if (state.length === 0) {
-    let err_html = `
+  if (state.isLoading === true) {
+    console.log("loading...");
+  }else if (state.isLoading === false) {
+    if (state.news.length === 0) {
+      let err_html = `
             <div class="error-text-container">
                 <p class="error-text">No news found!</p>
             </div>
         `;
 
-    news_section.insertAdjacentHTML("beforeend", err_html);
+      news_section.insertAdjacentHTML("beforeend", err_html);
 
-    // cta_section.classList.add("display")
-    cards_container.innerHTML = "";
+      // cta_section.classList.add("display")
+      cards_container.innerHTML = "";
 
-    return;
-  }
-  
-  state.results.forEach(news => {
-    console.log("news", news)
+      return;
+    }
 
-    let news_card = `
+    state.news.results.forEach((news) => {
+      console.log("news", news);
+
+      let news_card = `
     <div class="news-card">
             <div>
                 <img
@@ -78,18 +91,26 @@ function renderUI(state) {
           </div>
     `;
 
-    cards_container.insertAdjacentHTML("beforeend", news_card)
-    
-  });
+      cards_container.insertAdjacentHTML("beforeend", news_card);
+    });
+  }
 }
 
 window.addEventListener("load", async () => {
 
+  try{
+    
+
   let news = await fetchData(base_url);
 
-  state.setState(news);
+    // setState({ isLoading: false });
+
+  // state.setState(news);
+  setState({news});
 
   console.log("news", news);
-
-
+  }
+  catch(err){
+    console.log(err)
+  }
 });
